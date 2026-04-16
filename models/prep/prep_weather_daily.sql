@@ -16,9 +16,9 @@ WITH daily_data AS (
         SELECT *
     		, (CASE 
     			WHEN month_name in ('November', 'December', 'January', 'February') THEN 'winter'
-    			WHEN ('March', 'April', 'May') THEN 'spring'
-                WHEN ('June', 'July', 'August') THEN 'summer'
-                WHEN ('September', 'October') THEN 'autumn'
+    			WHEN month_name in ('March', 'April', 'May') THEN 'spring'
+                WHEN month_name in ('June', 'July', 'August') THEN 'summer'
+                WHEN month_name in ('September', 'October') THEN 'autumn'
     		END) AS season
         FROM add_features
     )
