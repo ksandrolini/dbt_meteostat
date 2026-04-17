@@ -25,4 +25,4 @@ weather_weekly AS (
 )
 SELECT *
 FROM weather_weekly
-ORDER BY airport_code, week_start;
+ORDER BY airport_code, week_start
