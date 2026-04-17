@@ -16,7 +16,7 @@ In a table `mart_route_stats.sql` we want to see **for each route over all time*
 
 */
 
-SELECT * FROM flights LIMIT 5
+-- SELECT * FROM flights LIMIT 5
 
 WITH routes AS (
 		-- airport as departure
