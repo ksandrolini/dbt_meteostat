@@ -31,7 +31,7 @@ WITH departures AS (
 			SUM(CASE WHEN cancelled = 0 THEN 1 END) AS dep_n_flights_calc,
 			COUNT(DISTINCT tail_number) AS nunique_tail_number_from,
 			COUNT(DISTINCT airline) AS nunique_airline_from
-		FROM {{('prep_flights')}}
+		FROM {{ref('prep_flights')}}
 		WHERE origin IN ('JFK', 'MIA', 'LAX')
 		GROUP BY origin, flight_date
 ),
@@ -47,7 +47,7 @@ arrivals AS(
 			SUM(CASE WHEN cancelled = 0 THEN 1 END) AS arr_n_flights_calc,
 			COUNT(DISTINCT tail_number) AS nunique_tail_number_to,
 			COUNT(DISTINCT airline) AS nunique_airline_to
-		FROM {{('prep_flights')}}
+		FROM {{ref('prep_flights')}}
 		WHERE dest IN ('JFK', 'MIA', 'LAX')
 		GROUP BY dest, flight_date
 ),
@@ -69,7 +69,7 @@ SELECT ap.name, ap.city, ap.country,
 		swd.min_temp_c, swd.max_temp_c, swd.precipitation_mm, swd.max_snow_mm, swd.avg_wind_direction,
 		swd.avg_wind_speed_kmh, swd.wind_peakgust_kmh
 FROM total_stats ts
-JOIN {{('prep_airports')}} ap
+JOIN {{ref('prep_airports')}} ap
 ON ts.airport_code = ap.faa
-JOIN {{('staging_weather_daily')}} swd
+JOIN {{ref('staging_weather_daily')}} swd
 ON ts.date = swd.date AND ts.airport_code = swd.airport_code
