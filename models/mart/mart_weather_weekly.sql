@@ -18,8 +18,8 @@ weather_weekly AS (
         SUM(precipitation_mm) AS precipitation_mm_weekly,
         SUM(max_snow_mm) AS snow_mm_weekly,
         AVG(avg_wind_direction) AS avg_wind_direction_weekly,
-        AVG(avg_wind_speed) AS avg_wind_speed_weekly,
-        MAX(avg_peakgust) AS max_peakgust_weekly
+        AVG(avg_wind_speed_kmh) AS avg_wind_speed_weekly,
+        MAX(wind_peakgust_kmh) AS max_peakgust_weekly
     FROM weather_daily
     GROUP BY airport_code, DATE_TRUNC('week', date)::DATE
 )
